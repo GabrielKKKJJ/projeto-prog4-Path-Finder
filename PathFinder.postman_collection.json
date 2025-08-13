@@ -1,0 +1,187 @@
+{
+  "info": {
+    "_postman_id": "path-finder-collection-001",
+    "name": "Path Finder API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Map",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Map 1\",\n  \"dimensions\": {\n    \"width\": 10,\n    \"height\": 10\n  }\n}"
+        },
+        "url": {"raw": "http://localhost:3000/api/maps", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "maps"]}
+      }
+    },
+    {
+      "name": "Get Map",
+      "request": {
+        "method": "GET",
+        "url": {"raw": "http://localhost:3000/api/maps/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "maps", "1"]}
+      }
+    },
+    {
+      "name": "Update Map",
+      "request": {
+        "method": "PUT",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Updated Map\",\n  \"dimensions\": {\n    \"width\": 12,\n    \"height\": 12\n  }\n}"
+        },
+        "url": {"raw": "http://localhost:3000/api/maps/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "maps", "1"]}
+      }
+    },
+    {
+      "name": "Delete Map",
+      "request": {
+        "method": "DELETE",
+        "url": {"raw": "http://localhost:3000/api/maps/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "maps", "1"]}
+      }
+    },
+    {
+      "name": "Create Obstacle",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"mapId\": 1,\n  \"position\": {\n    \"x\": 5,\n    \"y\": 3\n  },\n  \"size\": 2\n}"
+        },
+        "url": {"raw": "http://localhost:3000/api/obstacles", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "obstacles"]}
+      }
+    },
+    {
+      "name": "Get Obstacle",
+      "request": {
+        "method": "GET",
+        "url": {"raw": "http://localhost:3000/api/obstacles/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "obstacles", "1"]}
+      }
+    },
+    {
+      "name": "Update Obstacle",
+      "request": {
+        "method": "PUT",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"position\": {\n    \"x\": 6,\n    \"y\": 4\n  },\n  \"size\": 3\n}"
+        },
+        "url": {"raw": "http://localhost:3000/api/obstacles/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "obstacles", "1"]}
+      }
+    },
+    {
+      "name": "Delete Obstacle",
+      "request": {
+        "method": "DELETE",
+        "url": {"raw": "http://localhost:3000/api/obstacles/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "obstacles", "1"]}
+      }
+    },
+    {
+      "name": "Create Waypoint",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"mapId\": 1,\n  \"position\": {\n    \"x\": 8,\n    \"y\": 6\n  },\n  \"name\": \"Stop 1\"\n}"
+        },
+        "url": {"raw": "http://localhost:3000/api/waypoints", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "waypoints"]}
+      }
+    },
+    {
+      "name": "Get Waypoint",
+      "request": {
+        "method": "GET",
+        "url": {"raw": "http://localhost:3000/api/waypoints/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "waypoints", "1"]}
+      }
+    },
+    {
+      "name": "Update Waypoint",
+      "request": {
+        "method": "PUT",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"position\": {\n    \"x\": 9,\n    \"y\": 7\n  },\n  \"name\": \"Stop Updated\"\n}"
+        },
+        "url": {"raw": "http://localhost:3000/api/waypoints/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "waypoints", "1"]}
+      }
+    },
+    {
+      "name": "Delete Waypoint",
+      "request": {
+        "method": "DELETE",
+        "url": {"raw": "http://localhost:3000/api/waypoints/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "waypoints", "1"]}
+      }
+    },
+    {
+      "name": "Create Route",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"mapId\": 1,\n  \"start\": {\n    \"x\": 2,\n    \"y\": 2\n  },\n  \"end\": {\n    \"x\": 8,\n    \"y\": 8\n  },\n  \"distance\": 15\n}"
+        },
+        "url": {"raw": "http://localhost:3000/api/routes", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "routes"]}
+      }
+    },
+    {
+      "name": "Get Route",
+      "request": {
+        "method": "GET",
+        "url": {"raw": "http://localhost:3000/api/routes/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "routes", "1"]}
+      }
+    },
+    {
+      "name": "Delete Route",
+      "request": {
+        "method": "DELETE",
+        "url": {"raw": "http://localhost:3000/api/routes/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "routes", "1"]}
+      }
+    },
+    {
+      "name": "Create User",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"user1\",\n  \"email\": \"user1@example.com\"\n}"
+        },
+        "url": {"raw": "http://localhost:3000/api/users", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "users"]}
+      }
+    },
+    {
+      "name": "Get User",
+      "request": {
+        "method": "GET",
+        "url": {"raw": "http://localhost:3000/api/users/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "users", "1"]}
+      }
+    },
+    {
+      "name": "Update User",
+      "request": {
+        "method": "PUT",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"user1updated\",\n  \"email\": \"user1updated@example.com\"\n}"
+        },
+        "url": {"raw": "http://localhost:3000/api/users/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "users", "1"]}
+      }
+    },
+    {
+      "name": "Delete User",
+      "request": {
+        "method": "DELETE",
+        "url": {"raw": "http://localhost:3000/api/users/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "users", "1"]}
+      }
+    }
+  ]
+}
