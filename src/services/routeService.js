@@ -1,4 +1,4 @@
-const Route = require('../models/Route');
+const { Route } = require('../models');
 
 const toRouteOutput = (route) => ({
   id: route.id,

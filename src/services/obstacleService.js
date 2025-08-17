@@ -1,5 +1,4 @@
-const Obstacle = require('../models/Obstacle');
-const Map = require('../models/Map');
+const { Obstacle, Map } = require('../models');
 
 const toObstacleOutput = (obstacle) => ({
   id: obstacle.id,
@@ -12,6 +11,15 @@ const toObstacleOutput = (obstacle) => ({
 });
 
 const createObstacle = async ({ mapId, position, size }) => {
+  // Validate required fields
+  if (!mapId) throw new Error('mapId is required');
+  if (!position) throw new Error('position is required');
+  if (size === undefined || size === null) throw new Error('size is required');
+  
+  // Validate map exists
+  const map = await Map.findByPk(mapId);
+  if (!map) throw new Error('Map not found');
+
   const obstacle = await Obstacle.create({
     mapId,
     positionX: position.x,

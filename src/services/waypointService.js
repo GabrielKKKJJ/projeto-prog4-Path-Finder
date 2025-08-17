@@ -1,53 +1,45 @@
 const Waypoint = require('../models/Waypoint');
+const { validateWaypointCreation, validateWaypointUpdate } = require('../validators/waypointValidator');
+const { toWaypointOutput, toWaypointInput } = require('../transformers/waypointTransformer');
 
-const toWaypointOutput = (waypoint) => ({
-  id: waypoint.id,
-  mapId: waypoint.mapId,
-  position: {
-    x: waypoint.positionX,
-    y: waypoint.positionY
-  },
-  name: waypoint.name
-});
-
-const createWaypoint = async ({ mapId, position, name }) => {
-  const waypoint = await Waypoint.create({
-    mapId,
-    positionX: position.x,
-    positionY: position.y,
-    name
-  });
-  return toWaypointOutput(waypoint);
-};
-
-const getWaypoint = async (id) => {
-  const waypoint = await Waypoint.findByPk(id);
-  if (!waypoint) return null;
-  return toWaypointOutput(waypoint);
-};
-
-const updateWaypoint = async (id, { position, name }) => {
-  const waypoint = await Waypoint.findByPk(id);
-  if (!waypoint) return null;
-  if (position) {
-    waypoint.positionX = position.x;
-    waypoint.positionY = position.y;
+class WaypointService {
+  static async createWaypoint(waypointData) {
+    await validateWaypointCreation(waypointData);
+    
+    const dbWaypoint = await Waypoint.create({
+      ...toWaypointInput(waypointData),
+      mapId: waypointData.mapId,
+      name: waypointData.name
+    });
+    
+    return toWaypointOutput(dbWaypoint);
   }
-  if (name !== undefined) waypoint.name = name;
-  await waypoint.save();
-  return toWaypointOutput(waypoint);
-};
 
-const deleteWaypoint = async (id) => {
-  const waypoint = await Waypoint.findByPk(id);
-  if (!waypoint) return false;
-  await waypoint.destroy();
-  return true;
-};
+  static async getWaypoint(id) {
+    const waypoint = await Waypoint.findByPk(id);
+    if (!waypoint) return null;
+    return toWaypointOutput(waypoint);
+  }
 
-module.exports = {
-  createWaypoint,
-  getWaypoint,
-  updateWaypoint,
-  deleteWaypoint
-};
+  static async updateWaypoint(id, updateData) {
+    await validateWaypointUpdate(id, updateData);
+    
+    const waypoint = await Waypoint.findByPk(id);
+    if (!waypoint) return null;
+    
+    const updates = toWaypointInput(updateData);
+    await waypoint.update(updates);
+    
+    return toWaypointOutput(waypoint);
+  }
+
+  static async deleteWaypoint(id) {
+    const waypoint = await Waypoint.findByPk(id);
+    if (!waypoint) return false;
+    
+    await waypoint.destroy();
+    return true;
+  }
+}
+
+module.exports = WaypointService;

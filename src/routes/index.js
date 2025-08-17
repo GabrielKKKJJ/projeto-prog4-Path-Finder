@@ -4,6 +4,7 @@ const obstacleRoutes = require('./obstacleRoutes');
 const waypointRoutes = require('./waypointRoutes');
 const routeRoutes = require('./routeRoutes');
 const userRoutes = require('./userRoutes');
+const pathfindingRoutes = require('./pathfindingRoutes');
 
 const router = express.Router();
 
@@ -12,5 +13,6 @@ router.use('/obstacles', obstacleRoutes);
 router.use('/waypoints', waypointRoutes);
 router.use('/routes', routeRoutes);
 router.use('/users', userRoutes);
+router.use('/pathfinding', pathfindingRoutes);
 
 module.exports = router;
